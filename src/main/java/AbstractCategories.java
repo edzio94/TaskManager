@@ -18,8 +18,9 @@ public abstract class AbstractCategories implements CategoriesInterface{
     }
 
     @Override
-    public void addTask(String taskID) {
-        tasks.add(new Task(taskID));
+    public void addTask(String taskID,int priority) {
+        tasks.add(new Task(taskID,priority));
+        Sort();
     }
 
     @Override
@@ -55,5 +56,21 @@ public abstract class AbstractCategories implements CategoriesInterface{
     @Override
     public void setInProgress(int index) {
         tasks.get(index).inProgress = true;
+    }
+
+    @Override
+    public void Sort() {
+        for (int i = 0 ; i < tasks.size();i++)
+        {
+            for (int j = i+1; j < tasks.size() -1; j++)
+            {
+                if (tasks.get(i).priority <= tasks.get(j).priority)
+                {
+                    Task tmp = tasks.get(i);
+                    tasks.set(i, tasks.get(j));
+                    tasks.set(j,tmp);
+                }
+            }
+        }
     }
 }

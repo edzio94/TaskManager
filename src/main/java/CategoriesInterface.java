@@ -4,8 +4,9 @@
 public interface CategoriesInterface {
 
     void readTasks();
-    void addTask(String task);
+    void addTask(String task,int priority);
     void removeTask(int index);
     void setInProgress(int index);
     void setAsDone(int index);
+    void Sort();
 }
