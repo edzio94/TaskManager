@@ -3,6 +3,9 @@
  */
 public interface CategoriesInterface {
 
-    void readCategories();
-    void addToCategory(String task);
+    void readTasks();
+    void addTask(String task);
+    void removeTask(int index);
+    void setInProgress(int index);
+    void setAsDone(int index);
 }
