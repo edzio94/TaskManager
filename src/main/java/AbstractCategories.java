@@ -1,4 +1,5 @@
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 /**
@@ -60,15 +61,13 @@ public abstract class AbstractCategories implements CategoriesInterface{
 
     @Override
     public void Sort() {
-        for (int i = 0 ; i < tasks.size();i++)
+        for (int i = 0 ; i < tasks.size()-1;i++)
         {
-            for (int j = i+1; j < tasks.size() -1; j++)
+            for (int j = i+1; j < tasks.size(); j++)
             {
                 if (tasks.get(i).priority <= tasks.get(j).priority)
                 {
-                    Task tmp = tasks.get(i);
-                    tasks.set(i, tasks.get(j));
-                    tasks.set(j,tmp);
+                    Collections.swap(tasks,i,j);
                 }
             }
         }

@@ -29,22 +29,33 @@ public class TaskManager {
             3 - Next Week
          */
         
-        showCategories();
+
         int choice;
         do {
-             choice = Integer.parseInt(properties.getProperty("firstMenuOption")) -1;
+             choice = Integer.parseInt(properties.getProperty("firstMenuOption"));
             if (choice >= data.getCategories().size())
                 System.out.println("Wrong number. Try again");
-        }while(choice <data.getCategories().size());
+            System.out.println("In Loop");
+        }while(choice >= data.getCategories().size());
+
+        if (choice == 1)
+            showCategories();
+
+        choice--;
+
         data.getCategories().get(choice)
                 .addTask(properties.getProperty("firstTask"),8);
         data.getCategories().get(choice)
                 .addTask(properties.getProperty("secondTask"),10);
         data.getCategories().get(3).addTask("Move",3);
+        data.getCategories().get(choice).addTask("Watch star trek",9);
         data.getCategories().get(0).setAsDone(0);
-
-
         data.getCategories().get(0).readTasks();
+        data.getCategories().get(0).setInProgress(2);
+        data.getCategories().get(0).removeTask(1);
+        System.out.println("After removing 1 item and set in progress other one");
+        data.getCategories().get(0).readTasks();
+
     }
 
 
@@ -53,7 +64,7 @@ public class TaskManager {
         int i = 0;
         for (AbstractCategories cat : data.getCategories())
         {
-            System.out.println(cat.ID);
+            System.out.println(++i+"."+cat.ID);
         }
 
     }
